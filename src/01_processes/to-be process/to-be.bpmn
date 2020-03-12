@@ -12,11 +12,11 @@
         <bpmn:flowNodeRef>Activity_0ac7jcj</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1b5hr7t</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0mpradv</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0v2ddd7</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1376q0u</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0h87xf5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_10ytgvh</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1065jpk</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0v2ddd7</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0mpa3sg" name="Expert">
         <bpmn:flowNodeRef>Event_0x881t4</bpmn:flowNodeRef>
@@ -60,10 +60,6 @@
       <bpmn:incoming>Flow_1cmbn1v</bpmn:incoming>
       <bpmn:outgoing>Flow_1xyr5b7</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:endEvent id="Event_0v2ddd7" name="Response sent">
-      <bpmn:incoming>Flow_1xyr5b7</bpmn:incoming>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0b1kv3c" />
-    </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1xyr5b7" sourceRef="Activity_0mpradv" targetRef="Event_0v2ddd7" />
     <bpmn:sequenceFlow id="Flow_1b21szx" sourceRef="Activity_1376q0u" targetRef="Activity_0h87xf5" />
     <bpmn:serviceTask id="Activity_1376q0u" name="Analyze Content of Request">
@@ -85,6 +81,10 @@
     </bpmn:serviceTask>
     <bpmn:endEvent id="Event_0x881t4" name="Recieve request in personal mailbox">
       <bpmn:incoming>Flow_08ow2mm</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_0v2ddd7" name="Response sent">
+      <bpmn:incoming>Flow_1xyr5b7</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0b1kv3c" />
     </bpmn:endEvent>
   </bpmn:process>
   <bpmn:process id="Process_0wn5phb" isExecutable="false" />
@@ -189,18 +189,18 @@
         <di:waypoint x="500" y="460" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_1vvrvef_di" bpmnElement="Event_0v2ddd7">
-        <dc:Bounds x="902" y="422" width="36" height="36" />
+        <dc:Bounds x="912" y="422" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="883" y="465" width="74" height="14" />
+          <dc:Bounds x="893" y="465" width="74" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1xyr5b7_di" bpmnElement="Flow_1xyr5b7">
         <di:waypoint x="840" y="440" />
-        <di:waypoint x="902" y="440" />
+        <di:waypoint x="912" y="440" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_1oguyt6_di" bpmnElement="MessageFlow_1oguyt6">
-        <di:waypoint x="920" y="422" />
-        <di:waypoint x="920" y="140" />
+        <di:waypoint x="930" y="422" />
+        <di:waypoint x="930" y="140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1b21szx_di" bpmnElement="Flow_1b21szx">
         <di:waypoint x="840" y="550" />
