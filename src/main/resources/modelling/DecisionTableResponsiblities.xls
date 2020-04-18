@@ -9,8 +9,15 @@
         <inputExpression id="inputExpression_1" typeRef="string" expressionLanguage="juel">
           <text></text>
         </inputExpression>
+        <inputValues id="UnaryTests_15k16oy">
+          <text>"Rekrutierung","Recruiting","Bewerbung","Bewerber","Stellenausschreibung","Stellenbesetzung","SEO","Kanäle","Employer Branding","Arbeitgebermarke","Mitarbeitergespräche","Kultur","Change","Vision","Mission","Jahresziele","Mitarbeiterziele","Mitarbeitendenziele","Strategie","Entwicklung","Organisation","Teamentwicklung","Mitarbeiterentwicklung","Mitarbeitendenentwicklung","Feedback","Führung","Verhalten","Outsourcing","Kommunikation","Abläufe","Applikation","HR","Personalwesen","Personalgewinnung","Personalentwicklung","Honorierung","Leistung","Kündigung","Austritt","Eintritt","Onboarding","Problem","Konflikt","Konfliktistuation","Verträge","Vertrag","Gesundheit","Integration","HR Strategie","BGM"</text>
+        </inputValues>
       </input>
-      <output id="output_1" label="Responsible" name="Verantwortlich" typeRef="string" />
+      <output id="output_1" label="Responsible" name="Verantwortlich" typeRef="string">
+        <outputValues id="UnaryTests_0d1it3f">
+          <text>"romaine@solutionary.rocks","reto@solutionary.rocks","florian@solutionary.rocks"</text>
+        </outputValues>
+      </output>
       <rule id="DecisionRule_1fpwk4y">
         <inputEntry id="UnaryTests_16f1fvw">
           <text>"Rekrutierung"</text>
