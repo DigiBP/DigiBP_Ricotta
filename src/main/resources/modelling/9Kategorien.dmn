@@ -6,14 +6,21 @@
         <inputExpression id="inputExpression_1" typeRef="string">
           <text>Kategorie</text>
         </inputExpression>
+        <inputValues id="UnaryTests_0yramml">
+          <text>"Rekrutierung","Strategie","Organisationsentwicklung","Gesundheitsmanagement","Onboarding","Vision","Hr Outsourcing","Corporate Housekeeping","Change und Kultur","anderes Anliegen","Mitarbeiterentwicklung","Führungscoaching","Jahres- und Mitarbeiterziele"</text>
+        </inputValues>
       </input>
-      <output id="output_1" label="Verantwortlich" name="Verantwortlich" typeRef="string" />
+      <output id="output_1" label="Verantwortlich" name="Verantwortlich" typeRef="string">
+        <outputValues id="UnaryTests_1pzk08n">
+          <text>"petrus.romaine@gmail.com","florian.jutzi@gmail.com","reto.schindler@gmail.com"</text>
+        </outputValues>
+      </output>
       <rule id="DecisionRule_0y07cd7">
         <inputEntry id="UnaryTests_1sr60a2">
           <text>"Rekrutierung"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0co0npp">
-          <text>"romaine@solutionary.rocks"</text>
+          <text>"petrus.romaine@gmail.com"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1rswi95">
@@ -21,7 +28,7 @@
           <text>"Strategie"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_010kyyu">
-          <text>"florian@solutionary.rocks"</text>
+          <text>"florian.jutzi@gmail.com"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_09pj0vn">
@@ -29,7 +36,7 @@
           <text>"Organisationsentwicklung"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_12nfd5u">
-          <text>"reto@solutionary.rocks"</text>
+          <text>"reto.schindler@gmail.com"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1k0fciy">
@@ -37,7 +44,7 @@
           <text>"Gesundheitsmanagement"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_10jqw81">
-          <text>"florian@solutionary.rocks"</text>
+          <text>"reto.schindler@gmail.com"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_13zu857">
@@ -45,7 +52,7 @@
           <text>"Onboarding"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0tkzzpi">
-          <text>"romaine@solutionary.rocks"</text>
+          <text>"petrus.romaine@gmail.com"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1f3vavh">
@@ -53,7 +60,7 @@
           <text>"Vision"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_06qb92s">
-          <text>"reto@solutionary.rocks"</text>
+          <text>"reto.schindler@gmail.com"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_13krirh">
@@ -61,7 +68,7 @@
           <text>"HR Outsourcing"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1cnp96n">
-          <text>"reto@solutionary.rocks"</text>
+          <text>"reto.schindler@gmail.com"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1dig8uj">
@@ -69,7 +76,39 @@
           <text>"Corporate Housekeeping"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_16nlck1">
-          <text>"reto@solutionary.rocks"</text>
+          <text>"reto.schindler@gmail.com"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_00k0n2f">
+        <inputEntry id="UnaryTests_0s1gor6">
+          <text>"Change und Kultur"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0wj5osn">
+          <text>"reto.schindler@gmail.com"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1lrq9co">
+        <inputEntry id="UnaryTests_1f1s3a1">
+          <text>"Mitarbeiterentwicklung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1cg62by">
+          <text>"reto.schindler@gmail.com"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0105fb1">
+        <inputEntry id="UnaryTests_0s6dduj">
+          <text>"Führungscoaching"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qv4f1a">
+          <text>"reto.schindler@gmail.com"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0z2p3b5">
+        <inputEntry id="UnaryTests_1tpi6fa">
+          <text>"Jahres- und Mitarbeiterziele"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0t8k3ee">
+          <text>"florian.jutzi@gmail.com"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_03cogqw">
@@ -77,15 +116,7 @@
           <text>"anderes Anliegen"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1fd0stq">
-          <text>"florian@solutionary.rocks"</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_00k0n2f">
-        <inputEntry id="UnaryTests_0s1gor6">
-          <text></text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_0wj5osn">
-          <text></text>
+          <text>"petrus.romaine@gmail.com"</text>
         </outputEntry>
       </rule>
     </decisionTable>
