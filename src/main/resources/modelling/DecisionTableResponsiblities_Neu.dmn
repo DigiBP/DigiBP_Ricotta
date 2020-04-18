@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_139l8m9" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.1">
+  <decision id="Decision_0mnjg18" name="Responsible">
+    <extensionElements>
+      <biodi:bounds x="150" y="150" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable_1" hitPolicy="RULE ORDER">
+      <input id="input_1" label="Kategorie">
+        <inputExpression id="inputExpression_1" typeRef="string" expressionLanguage="juel">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Responsible" name="Verantwortlich" typeRef="string" />
+      <rule id="DecisionRule_1fpwk4y">
+        <inputEntry id="UnaryTests_16f1fvw">
+          <text>"Rekrutierung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ghlr38">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cstqiv">
+        <inputEntry id="UnaryTests_1mzd6xa">
+          <text>"Recruiting"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1t8g2hp">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nmdskm">
+        <inputEntry id="UnaryTests_0ck58sr">
+          <text>"Bewerbung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ya6b6t">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0dhpwni">
+        <inputEntry id="UnaryTests_11l3ab0">
+          <text>"Bewerber"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0tw0sra">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0gby0al">
+        <inputEntry id="UnaryTests_1elnoi8">
+          <text>"Stellenausschreibung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gqsi6r">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1hntcn9">
+        <inputEntry id="UnaryTests_1ra01zj">
+          <text>"Stellenbesetzung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_125s7e0">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0pek423">
+        <inputEntry id="UnaryTests_0vy601c">
+          <text>"SEO"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_13ka8wy">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0div99t">
+        <inputEntry id="UnaryTests_0ewpq90">
+          <text>"Kanäle"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0evnwuc">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0jizcz3">
+        <inputEntry id="UnaryTests_12xc5pl">
+          <text>"Employer Branding"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0m3t2mw">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07xizu7">
+        <inputEntry id="UnaryTests_1ubmdul">
+          <text>"Arbeitgebermarke"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1grqvzk">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_15et0z5">
+        <inputEntry id="UnaryTests_1rwjpoq">
+          <text>"Mitarbeitergespräche"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_161r4ro">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0b4ywe6">
+        <inputEntry id="UnaryTests_1xrn72x">
+          <text>"Kultur"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lciwn6">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0yl1g6y">
+        <inputEntry id="UnaryTests_1jflv7l">
+          <text>"Change"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1re7hjm">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rrbk5h">
+        <inputEntry id="UnaryTests_0m0rkz2">
+          <text>"Vision"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1mrsvsp">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0tcx14m">
+        <inputEntry id="UnaryTests_0mity51">
+          <text>"Mission"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jcr0pb">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1o0mg0l">
+        <inputEntry id="UnaryTests_1hpsp41">
+          <text>"Jahresziele"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0et7vx0">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0y5ebjl">
+        <inputEntry id="UnaryTests_1tgrzd9">
+          <text>"Mitarbeiterziele"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0m4lv83">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_18laoyb">
+        <inputEntry id="UnaryTests_0ip4ntm">
+          <text>"Mitarbeitendenziele"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1470oo6">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0t8pbw5">
+        <inputEntry id="UnaryTests_0ktcxgx">
+          <text>"Strategie"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0koaw0r">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ja8akb">
+        <inputEntry id="UnaryTests_046utbs">
+          <text>"Entwicklung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0s4e17w">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19uo0ya">
+        <inputEntry id="UnaryTests_1v5anct">
+          <text>"Organisation"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1m87kc2">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0b9zctz">
+        <inputEntry id="UnaryTests_0l3y4oe">
+          <text>"Teamentwicklung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1unx7e1">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03qu5yq">
+        <inputEntry id="UnaryTests_0dcvxe0">
+          <text>"Mitarbeiterentwicklung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bipt22">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0z63gib">
+        <inputEntry id="UnaryTests_0gf8v3y">
+          <text>"Mitarbeitendenentwicklung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0746pqo">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07e2hns">
+        <inputEntry id="UnaryTests_0noarn5">
+          <text>"Feedback"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ji8pas">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0uw91rv">
+        <inputEntry id="UnaryTests_0gw848z">
+          <text>"Führung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qc1eng">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0pn5n2g">
+        <inputEntry id="UnaryTests_1oh4ak1">
+          <text>"Verhalten"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0lqgtle">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0r1vuo2">
+        <inputEntry id="UnaryTests_0y1v688">
+          <text>"Outsourcing"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ded1zo">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19oiq8g">
+        <inputEntry id="UnaryTests_1supi7c">
+          <text>"Kommunikation"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0f6rt3n">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_172u5a3">
+        <inputEntry id="UnaryTests_090lq4k">
+          <text>"Abläufe"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0593bka">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1522vi1">
+        <inputEntry id="UnaryTests_1t58rof">
+          <text>"Applikation"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qxjl50">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0d5pt0o">
+        <inputEntry id="UnaryTests_05zksn5">
+          <text>"HR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0d4tz4q">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_09tn4kt">
+        <inputEntry id="UnaryTests_16fn5kl">
+          <text>"Personalwesen"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1yhxffh">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nyvy74">
+        <inputEntry id="UnaryTests_0dn9zlk">
+          <text>"Personalgewinnung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0c53ukf">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1gfwcgn">
+        <inputEntry id="UnaryTests_1ezy8il">
+          <text>"Personalentwicklung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09xtchi">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07iqaxb">
+        <inputEntry id="UnaryTests_0wwg5oj">
+          <text>"Honorierung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_013dojf">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1sarf2b">
+        <inputEntry id="UnaryTests_0nwekw4">
+          <text>"Leistung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0s9bxiw">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1v4r9q4">
+        <inputEntry id="UnaryTests_0e16f1b">
+          <text>"Kündigung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05tt6kc">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0jqdjeo">
+        <inputEntry id="UnaryTests_1op9di4">
+          <text>"Austritt"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1wlpuog">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1klhie4">
+        <inputEntry id="UnaryTests_0t2934o">
+          <text>"Eintritt"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1fucnfy">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_08c0sac">
+        <inputEntry id="UnaryTests_10g6kyn">
+          <text>"Onboarding"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jo67gl">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1m3xz72">
+        <inputEntry id="UnaryTests_1efiidg">
+          <text>"Problem"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1f874dn">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1mmzuaf">
+        <inputEntry id="UnaryTests_15rra7r">
+          <text>"Konflikt"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_157aljk">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_12qjkc1">
+        <inputEntry id="UnaryTests_1cws4fx">
+          <text>"Konfliktistuation"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09lyfml">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xfj0xq">
+        <inputEntry id="UnaryTests_1xnt986">
+          <text>"Verträge"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_103iq4c">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ld52lq">
+        <inputEntry id="UnaryTests_1p1ly47">
+          <text>"Vertrag"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17mcqnb">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01gt4e4">
+        <inputEntry id="UnaryTests_1sfhd8h">
+          <text>"Gesundheit"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_18wmnw4">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1quekjn">
+        <inputEntry id="UnaryTests_1ocue52">
+          <text>"Integration"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1182qfp">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0y6nnfx">
+        <inputEntry id="UnaryTests_12wh3un">
+          <text>"HR Strategie"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ynpqv2">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_00j6c98">
+        <inputEntry id="UnaryTests_0wc96fi">
+          <text>"BGM"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cerkfd">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

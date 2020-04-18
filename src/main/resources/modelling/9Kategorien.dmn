@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_1cfg83m" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.1">
+  <decision id="Decision_0atj0ou" name="Decision 1">
+    <decisionTable id="decisionTable_1" hitPolicy="RULE ORDER">
+      <input id="input_1" label="Kategorie">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>Kategorie</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Verantwortlich" name="Verantwortlich" typeRef="string" />
+      <rule id="DecisionRule_0y07cd7">
+        <inputEntry id="UnaryTests_1sr60a2">
+          <text>"Rekrutierung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0co0npp">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1rswi95">
+        <inputEntry id="UnaryTests_14302zu">
+          <text>"Strategie"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_010kyyu">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_09pj0vn">
+        <inputEntry id="UnaryTests_1t1wxn3">
+          <text>"Organisationsentwicklung"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_12nfd5u">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1k0fciy">
+        <inputEntry id="UnaryTests_0fber89">
+          <text>"Gesundheitsmanagement"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_10jqw81">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_13zu857">
+        <inputEntry id="UnaryTests_0pliupo">
+          <text>"Onboarding"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0tkzzpi">
+          <text>"romaine@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1f3vavh">
+        <inputEntry id="UnaryTests_11ygd68">
+          <text>"Vision"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_06qb92s">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_13krirh">
+        <inputEntry id="UnaryTests_11we2ub">
+          <text>"HR Outsourcing"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1cnp96n">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1dig8uj">
+        <inputEntry id="UnaryTests_1bhu57a">
+          <text>"Corporate Housekeeping"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16nlck1">
+          <text>"reto@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03cogqw">
+        <inputEntry id="UnaryTests_1sm2ydh">
+          <text>"anderes Anliegen"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1fd0stq">
+          <text>"florian@solutionary.rocks"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_00k0n2f">
+        <inputEntry id="UnaryTests_0s1gor6">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0wj5osn">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
