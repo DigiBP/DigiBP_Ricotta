@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0p1ajsx" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.1">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0p1ajsx" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.0">
   <bpmn:collaboration id="Collaboration_03h4opx">
     <bpmn:participant id="Participant_0ur72bi" name="Solutionary GmbH" processRef="Process_1k2zs1v" />
   </bpmn:collaboration>
@@ -31,12 +31,31 @@
     </bpmn:laneSet>
     <bpmn:startEvent id="Event_0tfl9aj" name="Every 15 Minutes">
       <bpmn:outgoing>Flow_0v5qizy</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_1vsfajs" />
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1vsfajs">
+        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">0 0/15 * * * ?</bpmn:timeCycle>
+      </bpmn:timerEventDefinition>
     </bpmn:startEvent>
     <bpmn:endEvent id="Event_10f7mqk" name="End Process">
       <bpmn:incoming>Flow_004s60p</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:serviceTask id="check_mail" name="Check info-Mailbox for new E-Mail">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">GET</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/hlsetutphj8ql4sq3fo6bdu5rnq1wjse</camunda:inputParameter>
+            <camunda:outputParameter name="checkEmail">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+"message":"message_value",
+"subject":"subject_value",
+"mail_id":"mail_id_value"
+});
+</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0v5qizy</bpmn:incoming>
       <bpmn:outgoing>Flow_1136nnh</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -75,6 +94,26 @@
       <bpmn:outgoing>Flow_0rkc2s1</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:serviceTask id="Activity_1cs0sz2" name="Send maildaress of responsible person and mail_id to Integromat">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="header">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+    "responsible_expert": "responsible_expert_value",
+"mail_id":"mail_id_value"
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/3aiiiriiwzi5ty3v49k8lhq2kqs6ipil</camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1tnnofk</bpmn:incoming>
       <bpmn:outgoing>Flow_1uiokm0</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -84,10 +123,14 @@
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_1uiokm0" sourceRef="Activity_1cs0sz2" targetRef="Activity_1065jpk" />
     <bpmn:sequenceFlow id="Flow_0v5qizy" sourceRef="Event_0tfl9aj" targetRef="check_mail" />
-    <bpmn:sequenceFlow id="Flow_004s60p" name="No" sourceRef="Gateway_1wauq6i" targetRef="Event_10f7mqk" />
+    <bpmn:sequenceFlow id="Flow_004s60p" name="No" sourceRef="Gateway_1wauq6i" targetRef="Event_10f7mqk">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${message_value == "no new e-mail found"}'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0s7v8vw" name="No" sourceRef="Gateway_1msnt7j" targetRef="Activity_0vgtp27" />
     <bpmn:sequenceFlow id="Flow_1136nnh" sourceRef="check_mail" targetRef="Gateway_1wauq6i" />
-    <bpmn:sequenceFlow id="Flow_08s81jh" name="Yes" sourceRef="Gateway_1wauq6i" targetRef="Activity_0ac7jcj" />
+    <bpmn:sequenceFlow id="Flow_08s81jh" name="Yes" sourceRef="Gateway_1wauq6i" targetRef="Activity_0ac7jcj">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${message_value == "new e-mail found"}'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_12aecgv" sourceRef="Activity_1065jpk" targetRef="Gateway_1msnt7j" />
     <bpmn:sequenceFlow id="Flow_1mk9at8" sourceRef="Activity_0vgtp27" targetRef="Activity_0lkjde1" />
     <bpmn:sequenceFlow id="Flow_0xfwl0s" sourceRef="Activity_0lkjde1" targetRef="Activity_07d3he9" />
