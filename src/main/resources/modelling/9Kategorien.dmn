@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_1cfg83m" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.1">
-  <decision id="Decision_0atj0ou" name="Decision 1">
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_1cfg83m" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.0">
+  <decision id="identify_responsible_person" name="Decision 1">
     <decisionTable id="decisionTable_1" hitPolicy="RULE ORDER">
       <input id="input_1" label="Kategorie">
         <inputExpression id="inputExpression_1" typeRef="string">
