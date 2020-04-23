@@ -2,15 +2,15 @@
 <definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_1cfg83m" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.0">
   <decision id="identify_responsible_person" name="Decision 1">
     <decisionTable id="decisionTable_1" hitPolicy="RULE ORDER">
-      <input id="input_1" label="Kategorie">
+      <input id="input_1" label="subject_value">
         <inputExpression id="inputExpression_1" typeRef="string">
-          <text>Kategorie</text>
+          <text>subject_value</text>
         </inputExpression>
         <inputValues id="UnaryTests_0yramml">
           <text>"Rekrutierung","Strategie","Organisationsentwicklung","Gesundheitsmanagement","Onboarding","Vision","Hr Outsourcing","Corporate Housekeeping","Change und Kultur","anderes Anliegen","Mitarbeiterentwicklung","Führungscoaching","Jahres- und Mitarbeiterziele"</text>
         </inputValues>
       </input>
-      <output id="output_1" label="Verantwortlich" name="Verantwortlich" typeRef="string">
+      <output id="output_1" label="responsible_expert_value" name="responsible_expert_value" typeRef="string">
         <outputValues id="UnaryTests_1pzk08n">
           <text>"petrus.romaine@gmail.com","florian.jutzi@gmail.com","reto.schindler@gmail.com"</text>
         </outputValues>
@@ -117,6 +117,14 @@
         </inputEntry>
         <outputEntry id="LiteralExpression_1fd0stq">
           <text>"petrus.romaine@gmail.com"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_179xkcf">
+        <inputEntry id="UnaryTests_0af0ujs">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1i61ypo">
+          <text></text>
         </outputEntry>
       </rule>
     </decisionTable>

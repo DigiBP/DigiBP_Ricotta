@@ -46,6 +46,9 @@
 "mail_id":"mail_id_value"
 });</camunda:script>
             </camunda:outputParameter>
+            <camunda:outputParameter name="status_code">
+              <camunda:script scriptFormat="JavsScript">var status_code = response.getResponseParameter("statusCode");</camunda:script>
+            </camunda:outputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
         </camunda:connector>
@@ -64,8 +67,8 @@
     <bpmn:businessRuleTask id="Activity_0h87xf5" name="Identify responsible Person" camunda:resultVariable="Verantwortlich" camunda:decisionRef="identify_responsible_person" camunda:mapDecisionResult="singleResult">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="Decision_0atj0ou" />
-          <camunda:outputParameter name="Decision_0atj0ou" />
+          <camunda:inputParameter name="subject_value">${subject_value}</camunda:inputParameter>
+          <camunda:outputParameter name="responsible_expert_value">${responsible_expert_value}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_08s81jh</bpmn:incoming>
@@ -122,10 +125,10 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0v5qizy" sourceRef="Event_0tfl9aj" targetRef="check_mail" />
     <bpmn:sequenceFlow id="Flow_004s60p" name="No" sourceRef="Gateway_1wauq6i" targetRef="Event_10f7mqk">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${message_value == "no new e-mail found"}'</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${status_code == "500"}'</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_08s81jh" name="Yes" sourceRef="Gateway_1wauq6i" targetRef="Activity_0h87xf5">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${message_value == "new e-mail found"}'</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${status_code == "200"}'</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1umy2u6" sourceRef="check_mail" targetRef="Gateway_1wauq6i" />
     <bpmn:sequenceFlow id="Flow_10thgus" sourceRef="Activity_1cs0sz2" targetRef="Gateway_1msnt7j" />
@@ -238,7 +241,7 @@
       <bpmndi:BPMNShape id="Gateway_1msnt7j_di" bpmnElement="Gateway_1msnt7j" isMarkerVisible="true">
         <dc:Bounds x="1155" y="385" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1097" y="356" width="66" height="27" />
+          <dc:Bounds x="1097" y="366" width="66" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0pneho4_di" bpmnElement="Activity_0lkjde1">
@@ -263,20 +266,20 @@
         <dc:Bounds x="780" y="370" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_1a33wyd_di" bpmnElement="Participant_1a33wyd" isHorizontal="true">
-        <dc:Bounds x="129" y="80" width="2419" height="130" />
+        <dc:Bounds x="129" y="60" width="2419" height="130" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_0v3u0lr_di" bpmnElement="MessageFlow_0v3u0lr">
         <di:waypoint x="320" y="370" />
-        <di:waypoint x="320" y="210" />
+        <di:waypoint x="320" y="190" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="227" y="224" width="85" height="53" />
+          <dc:Bounds x="227" y="209" width="85" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_09h5ps8_di" bpmnElement="MessageFlow_09h5ps8">
-        <di:waypoint x="380" y="210" />
+        <di:waypoint x="380" y="190" />
         <di:waypoint x="380" y="370" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="383" y="218" width="67" height="66" />
+          <dc:Bounds x="383" y="203" width="67" height="66" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1umy2u6_di" bpmnElement="Flow_1umy2u6">
@@ -285,16 +288,16 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_06wlrdz_di" bpmnElement="MessageFlow_06wlrdz">
         <di:waypoint x="960" y="370" />
-        <di:waypoint x="960" y="210" />
+        <di:waypoint x="960" y="190" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="867" y="230" width="85" height="66" />
+          <dc:Bounds x="867" y="217" width="85" height="66" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_1w6sf12_di" bpmnElement="MessageFlow_1w6sf12">
-        <di:waypoint x="1000" y="210" />
+        <di:waypoint x="1000" y="190" />
         <di:waypoint x="1000" y="370" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1008" y="243" width="64" height="53" />
+          <dc:Bounds x="1008" y="231" width="64" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10thgus_di" bpmnElement="Flow_10thgus">
@@ -331,16 +334,16 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_19pkpmf_di" bpmnElement="MessageFlow_19pkpmf">
         <di:waypoint x="1580" y="320" />
-        <di:waypoint x="1580" y="210" />
+        <di:waypoint x="1580" y="190" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1487" y="237" width="85" height="66" />
+          <dc:Bounds x="1487" y="228" width="85" height="66" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_1mhcoq5_di" bpmnElement="MessageFlow_1mhcoq5">
-        <di:waypoint x="1630" y="210" />
+        <di:waypoint x="1630" y="190" />
         <di:waypoint x="1630" y="320" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1638" y="243" width="64" height="40" />
+          <dc:Bounds x="1638" y="233" width="64" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1bm74xs_di" bpmnElement="Flow_1bm74xs">
