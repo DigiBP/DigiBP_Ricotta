@@ -39,7 +39,7 @@
           <camunda:inputOutput>
             <camunda:inputParameter name="method">GET</camunda:inputParameter>
             <camunda:inputParameter name="url">https://hook.integromat.com/hlsetutphj8ql4sq3fo6bdu5rnq1wjse</camunda:inputParameter>
-            <camunda:outputParameter name="checkEmail">
+            <camunda:outputParameter name="newEmail">
               <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
 "message":"message_value",
 "subject":"subject_value",
@@ -91,6 +91,15 @@
 });</camunda:script>
             </camunda:inputParameter>
             <camunda:inputParameter name="url">https://hook.integromat.com/3aiiiriiwzi5ty3v49k8lhq2kqs6ipil</camunda:inputParameter>
+            <camunda:outputParameter name="response">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+"mail_id":"mail_id_value",
+"message":"message_value"
+});</camunda:script>
+            </camunda:outputParameter>
+            <camunda:outputParameter name="status_code">
+              <camunda:script scriptFormat="JavaScript">var status_code = response.getResponseParameter("statusCode");</camunda:script>
+            </camunda:outputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
         </camunda:connector>
@@ -115,13 +124,39 @@
       <bpmn:outgoing>Flow_16kjljo</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:serviceTask id="Activity_00z9vaa" name="Send Error Message to Backoffice">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="header">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+"mail_id":"mail_id_value",
+"error_message":"message_value"
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:outputParameter name="message">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+"message":"message_value"
+});</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_16u4pca</bpmn:incoming>
       <bpmn:outgoing>Flow_1bm74xs</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_1tnnofk" sourceRef="Activity_0h87xf5" targetRef="Activity_1cs0sz2" />
-    <bpmn:sequenceFlow id="Flow_0wdr2x7" name="Status Code = 200" sourceRef="Gateway_1msnt7j" targetRef="Event_073d2an" />
+    <bpmn:sequenceFlow id="Flow_0wdr2x7" name="Status Code = 200" sourceRef="Gateway_1msnt7j" targetRef="Event_073d2an">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${status_code == "200"}'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0s7v8vw" name="Status Code = 210" sourceRef="Gateway_1msnt7j" targetRef="Activity_0vgtp27">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" />
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${status_code == "210"}'</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0v5qizy" sourceRef="Event_0tfl9aj" targetRef="check_mail" />
     <bpmn:sequenceFlow id="Flow_004s60p" name="No" sourceRef="Gateway_1wauq6i" targetRef="Event_10f7mqk">
@@ -133,7 +168,9 @@
     <bpmn:sequenceFlow id="Flow_1umy2u6" sourceRef="check_mail" targetRef="Gateway_1wauq6i" />
     <bpmn:sequenceFlow id="Flow_10thgus" sourceRef="Activity_1cs0sz2" targetRef="Gateway_1msnt7j" />
     <bpmn:sequenceFlow id="Flow_16kjljo" sourceRef="Activity_0vgtp27" targetRef="Activity_0kds7t1" />
-    <bpmn:sequenceFlow id="Flow_16u4pca" name="Status Code = {900, 910, 920}" sourceRef="Gateway_1msnt7j" targetRef="Activity_00z9vaa" />
+    <bpmn:sequenceFlow id="Flow_16u4pca" name="Status Code = {900, 910, 920}" sourceRef="Gateway_1msnt7j" targetRef="Activity_00z9vaa">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${status_code &gt;= "900" || status_code &lt;= "999"}'</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1ed0yts" sourceRef="Activity_07d3he9" targetRef="Event_073d2an" />
     <bpmn:sequenceFlow id="Flow_1bm74xs" sourceRef="Activity_00z9vaa" targetRef="Activity_0xyn8dx" />
     <bpmn:endEvent id="Event_073d2an" name="Mail received in Inbox">
