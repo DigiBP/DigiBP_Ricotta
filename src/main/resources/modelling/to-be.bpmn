@@ -2,7 +2,7 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0p1ajsx" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.0">
   <bpmn:collaboration id="Collaboration_03h4opx">
     <bpmn:participant id="Participant_0ur72bi" name="Solutionary GmbH" processRef="Process_1k2zs1v" />
-    <bpmn:participant id="Participant_1a33wyd" name="Integromat" processRef="Process_0ieaey8" />
+    <bpmn:participant id="Participant_1a33wyd" name="Integromat" />
     <bpmn:messageFlow id="MessageFlow_0v3u0lr" name="https://hook.integromat.com/hlsetutphj8ql4sq3fo6bdu5rnq1wjse" sourceRef="check_mail" targetRef="Participant_1a33wyd" />
     <bpmn:messageFlow id="MessageFlow_09h5ps8" name="{&#10;&#34;message&#34;:&#34;&#34;,&#10;&#34;subject&#34;:&#34;&#34;,&#10;&#34;mail_id&#34;:&#34;&#34;&#10;}" sourceRef="Participant_1a33wyd" targetRef="check_mail" />
     <bpmn:messageFlow id="MessageFlow_06wlrdz" name="{   &#34;responsible_expert&#34;: &#34;&#34;,&#10;&#34;mail_id&#34;:&#34;&#34;&#10;})" sourceRef="Activity_1cs0sz2" targetRef="Participant_1a33wyd" />
@@ -12,8 +12,17 @@
   </bpmn:collaboration>
   <bpmn:process id="Process_1k2zs1v" isExecutable="false">
     <bpmn:laneSet id="LaneSet_19f7k97">
-      <bpmn:lane id="Lane_0mpa3sg" name="Expert">
-        <bpmn:flowNodeRef>Event_073d2an</bpmn:flowNodeRef>
+      <bpmn:lane id="Lane_0wav967" name="Camunda">
+        <bpmn:flowNodeRef>Event_0tfl9aj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>check_mail</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1wauq6i</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_10f7mqk</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0l4rnqj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0h87xf5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1cs0sz2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1msnt7j</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_00z9vaa</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0vgtp27</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1247ng8" name="Backoffice employee">
         <bpmn:flowNodeRef>Activity_0kds7t1</bpmn:flowNodeRef>
@@ -21,104 +30,39 @@
         <bpmn:flowNodeRef>Activity_0lkjde1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_07d3he9</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_0wav967" name="Camunda">
-        <bpmn:flowNodeRef>check_mail</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1wauq6i</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_10f7mqk</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0h87xf5</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1cs0sz2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1msnt7j</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0tfl9aj</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0vgtp27</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_00z9vaa</bpmn:flowNodeRef>
+      <bpmn:lane id="Lane_0mpa3sg" name="Expert">
+        <bpmn:flowNodeRef>Event_073d2an</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:serviceTask id="check_mail" name="Check info-Mailbox for new E-Mail">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="method">GET</camunda:inputParameter>
-            <camunda:inputParameter name="url">https://hook.integromat.com/hlsetutphj8ql4sq3fo6bdu5rnq1wjse</camunda:inputParameter>
-            <camunda:outputParameter name="newEmail">
-              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
-"message":"message_value",
-"subject":"subject_value",
-"mail_id":"mail_id_value"
-});</camunda:script>
-            </camunda:outputParameter>
-            <camunda:outputParameter name="status_code">
-              <camunda:script scriptFormat="JavsScript">var status_code = response.getResponseParameter("statusCode");</camunda:script>
-            </camunda:outputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0v5qizy</bpmn:incoming>
-      <bpmn:outgoing>Flow_1umy2u6</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:exclusiveGateway id="Gateway_1wauq6i" name="New E-Mail?">
-      <bpmn:incoming>Flow_1umy2u6</bpmn:incoming>
-      <bpmn:outgoing>Flow_08s81jh</bpmn:outgoing>
-      <bpmn:outgoing>Flow_004s60p</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:endEvent id="Event_10f7mqk" name="End Process">
-      <bpmn:incoming>Flow_004s60p</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:businessRuleTask id="Activity_0h87xf5" name="Identify responsible Person" camunda:resultVariable="Verantwortlich" camunda:decisionRef="identify_responsible_person" camunda:mapDecisionResult="singleResult">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="subject_value">${subject_value}</camunda:inputParameter>
-          <camunda:outputParameter name="responsible_expert_value">${responsible_expert_value}</camunda:outputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_08s81jh</bpmn:incoming>
-      <bpmn:outgoing>Flow_1tnnofk</bpmn:outgoing>
-    </bpmn:businessRuleTask>
-    <bpmn:serviceTask id="Activity_1cs0sz2" name="Send maildaress of responsible person and mail_id to Integromat">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="header">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
-    "responsible_expert": "responsible_expert_value",
-"mail_id":"mail_id_value"
-});</camunda:script>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="url">https://hook.integromat.com/3aiiiriiwzi5ty3v49k8lhq2kqs6ipil</camunda:inputParameter>
-            <camunda:outputParameter name="response">
-              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
-"mail_id":"mail_id_value",
-"message":"message_value"
-});</camunda:script>
-            </camunda:outputParameter>
-            <camunda:outputParameter name="status_code">
-              <camunda:script scriptFormat="JavaScript">var status_code = response.getResponseParameter("statusCode");</camunda:script>
-            </camunda:outputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1tnnofk</bpmn:incoming>
-      <bpmn:outgoing>Flow_10thgus</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:exclusiveGateway id="Gateway_1msnt7j" name="Mail sent successfully?">
-      <bpmn:incoming>Flow_10thgus</bpmn:incoming>
-      <bpmn:outgoing>Flow_0s7v8vw</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0wdr2x7</bpmn:outgoing>
-      <bpmn:outgoing>Flow_16u4pca</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:startEvent id="Event_0tfl9aj" name="Every 15 Minutes">
-      <bpmn:outgoing>Flow_0v5qizy</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_1vsfajs">
-        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">0 0/15 * * * ?</bpmn:timeCycle>
-      </bpmn:timerEventDefinition>
-    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_08s81jh" name="Yes" sourceRef="Gateway_1wauq6i" targetRef="Activity_0h87xf5">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">status_code_value == "200"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1umy2u6" sourceRef="check_mail" targetRef="Gateway_1wauq6i" />
+    <bpmn:sequenceFlow id="Flow_0v5qizy" sourceRef="Event_0tfl9aj" targetRef="check_mail" />
+    <bpmn:sequenceFlow id="Flow_0yg1qrg" name="Error" sourceRef="Gateway_1wauq6i" targetRef="Event_0l4rnqj">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">status_code_value == "400"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_14pbixk" sourceRef="Gateway_1wauq6i" targetRef="Event_10f7mqk" />
+    <bpmn:sequenceFlow id="Flow_0xfwl0s" sourceRef="Activity_0lkjde1" targetRef="Activity_07d3he9" />
+    <bpmn:sequenceFlow id="Flow_1u4oxs9" sourceRef="Activity_0xyn8dx" targetRef="Activity_0lkjde1" />
+    <bpmn:sequenceFlow id="Flow_0l8vg8m" sourceRef="Activity_0kds7t1" targetRef="Activity_0lkjde1" />
+    <bpmn:sequenceFlow id="Flow_1bm74xs" sourceRef="Activity_00z9vaa" targetRef="Activity_0xyn8dx" />
+    <bpmn:sequenceFlow id="Flow_1ed0yts" sourceRef="Activity_07d3he9" targetRef="Event_073d2an" />
+    <bpmn:sequenceFlow id="Flow_16u4pca" name="Status Code = 400" sourceRef="Gateway_1msnt7j" targetRef="Activity_00z9vaa">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">status_code_value == "400"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_16kjljo" sourceRef="Activity_0vgtp27" targetRef="Activity_0kds7t1" />
+    <bpmn:sequenceFlow id="Flow_10thgus" sourceRef="Activity_1cs0sz2" targetRef="Gateway_1msnt7j" />
+    <bpmn:sequenceFlow id="Flow_004s60p" name="No" sourceRef="Gateway_1wauq6i" targetRef="Event_10f7mqk">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">status_code_value == "204"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0s7v8vw" name="Status Code = 202" sourceRef="Gateway_1msnt7j" targetRef="Activity_0vgtp27">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">status_code_value == "202"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0wdr2x7" name="Status Code = 200" sourceRef="Gateway_1msnt7j" targetRef="Event_073d2an">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">status_code_value == "200"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1tnnofk" sourceRef="Activity_0h87xf5" targetRef="Activity_1cs0sz2" />
     <bpmn:serviceTask id="Activity_0vgtp27" name="Notify Backoffice">
       <bpmn:incoming>Flow_0s7v8vw</bpmn:incoming>
       <bpmn:outgoing>Flow_16kjljo</bpmn:outgoing>
@@ -151,78 +95,137 @@
       <bpmn:incoming>Flow_16u4pca</bpmn:incoming>
       <bpmn:outgoing>Flow_1bm74xs</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_1tnnofk" sourceRef="Activity_0h87xf5" targetRef="Activity_1cs0sz2" />
-    <bpmn:sequenceFlow id="Flow_0wdr2x7" name="Status Code = 200" sourceRef="Gateway_1msnt7j" targetRef="Event_073d2an">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${status_code == "200"}'</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0s7v8vw" name="Status Code = 210" sourceRef="Gateway_1msnt7j" targetRef="Activity_0vgtp27">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${status_code == "210"}'</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0v5qizy" sourceRef="Event_0tfl9aj" targetRef="check_mail" />
-    <bpmn:sequenceFlow id="Flow_004s60p" name="No" sourceRef="Gateway_1wauq6i" targetRef="Event_10f7mqk">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${status_code == "500"}'</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_08s81jh" name="Yes" sourceRef="Gateway_1wauq6i" targetRef="Activity_0h87xf5">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${status_code == "200"}'</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1umy2u6" sourceRef="check_mail" targetRef="Gateway_1wauq6i" />
-    <bpmn:sequenceFlow id="Flow_10thgus" sourceRef="Activity_1cs0sz2" targetRef="Gateway_1msnt7j" />
-    <bpmn:sequenceFlow id="Flow_16kjljo" sourceRef="Activity_0vgtp27" targetRef="Activity_0kds7t1" />
-    <bpmn:sequenceFlow id="Flow_16u4pca" name="Status Code = {900, 910, 920}" sourceRef="Gateway_1msnt7j" targetRef="Activity_00z9vaa">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">'${status_code &gt;= "900" || status_code &lt;= "999"}'</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1ed0yts" sourceRef="Activity_07d3he9" targetRef="Event_073d2an" />
-    <bpmn:sequenceFlow id="Flow_1bm74xs" sourceRef="Activity_00z9vaa" targetRef="Activity_0xyn8dx" />
-    <bpmn:endEvent id="Event_073d2an" name="Mail received in Inbox">
-      <bpmn:incoming>Flow_0wdr2x7</bpmn:incoming>
-      <bpmn:incoming>Flow_1ed0yts</bpmn:incoming>
+    <bpmn:exclusiveGateway id="Gateway_1msnt7j" name="Mail sent successfully?">
+      <bpmn:incoming>Flow_10thgus</bpmn:incoming>
+      <bpmn:outgoing>Flow_0s7v8vw</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0wdr2x7</bpmn:outgoing>
+      <bpmn:outgoing>Flow_16u4pca</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="Activity_1cs0sz2" name="Send maildaress of responsible person and mail_id to Integromat">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="header">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+    "responsible_expert":responsible_expert_value,
+"mail_id":mail_id_value
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/3aiiiriiwzi5ty3v49k8lhq2kqs6ipil</camunda:inputParameter>
+            <camunda:outputParameter name="response">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+"status_code":"status_code_value"
+"mail_id":"mail_id_value",
+"message":"message_value"
+});</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1tnnofk</bpmn:incoming>
+      <bpmn:outgoing>Flow_10thgus</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:businessRuleTask id="Activity_0h87xf5" name="Identify responsible Person" camunda:resultVariable="Verantwortlich" camunda:decisionRef="identify_responsible_person" camunda:mapDecisionResult="singleResult">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="subject_value">${subject_value}</camunda:inputParameter>
+          <camunda:outputParameter name="responsible_expert_value">${responsible_expert_value}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_08s81jh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tnnofk</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:endEvent id="Event_10f7mqk" name="End Process">
+      <bpmn:incoming>Flow_004s60p</bpmn:incoming>
+      <bpmn:incoming>Flow_14pbixk</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_0kds7t1" name="Check Mailbox">
-      <bpmn:incoming>Flow_16kjljo</bpmn:incoming>
-      <bpmn:outgoing>Flow_0l8vg8m</bpmn:outgoing>
+    <bpmn:endEvent id="Event_0l4rnqj" name="Abort Process">
+      <bpmn:incoming>Flow_0yg1qrg</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_1wauq6i" name="New E-Mail?">
+      <bpmn:incoming>Flow_1umy2u6</bpmn:incoming>
+      <bpmn:outgoing>Flow_08s81jh</bpmn:outgoing>
+      <bpmn:outgoing>Flow_004s60p</bpmn:outgoing>
+      <bpmn:outgoing>Flow_14pbixk</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0yg1qrg</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="check_mail" name="Check info-Mailbox for new E-Mail">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">GET</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/hlsetutphj8ql4sq3fo6bdu5rnq1wjse</camunda:inputParameter>
+            <camunda:outputParameter name="newEmail">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+"status_code":"status_code_value",
+"message":"message_value",
+"subject":"subject_value",
+"mail_id":"mail_id_value"
+});</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0v5qizy</bpmn:incoming>
+      <bpmn:outgoing>Flow_1umy2u6</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="Event_0tfl9aj" name="Every 15 Minutes">
+      <bpmn:outgoing>Flow_0v5qizy</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_07d3he9" name="Forward Mail to Responsible Expert manually">
+      <bpmn:incoming>Flow_0xfwl0s</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ed0yts</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_0xyn8dx" name="Check generated Error-Email">
-      <bpmn:incoming>Flow_1bm74xs</bpmn:incoming>
-      <bpmn:outgoing>Flow_1u4oxs9</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0l8vg8m" sourceRef="Activity_0kds7t1" targetRef="Activity_0lkjde1" />
-    <bpmn:sequenceFlow id="Flow_1u4oxs9" sourceRef="Activity_0xyn8dx" targetRef="Activity_0lkjde1" />
     <bpmn:userTask id="Activity_0lkjde1" name="Identify responisble expert">
       <bpmn:incoming>Flow_0l8vg8m</bpmn:incoming>
       <bpmn:incoming>Flow_1u4oxs9</bpmn:incoming>
       <bpmn:outgoing>Flow_0xfwl0s</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_07d3he9" name="Forward Mail to Responsible Expert manually">
-      <bpmn:incoming>Flow_0xfwl0s</bpmn:incoming>
-      <bpmn:outgoing>Flow_1ed0yts</bpmn:outgoing>
+    <bpmn:userTask id="Activity_0xyn8dx" name="Check generated Error-Email">
+      <bpmn:incoming>Flow_1bm74xs</bpmn:incoming>
+      <bpmn:outgoing>Flow_1u4oxs9</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0xfwl0s" sourceRef="Activity_0lkjde1" targetRef="Activity_07d3he9" />
+    <bpmn:userTask id="Activity_0kds7t1" name="Check Mailbox">
+      <bpmn:incoming>Flow_16kjljo</bpmn:incoming>
+      <bpmn:outgoing>Flow_0l8vg8m</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_073d2an" name="Mail received in Inbox">
+      <bpmn:incoming>Flow_0wdr2x7</bpmn:incoming>
+      <bpmn:incoming>Flow_1ed0yts</bpmn:incoming>
+    </bpmn:endEvent>
   </bpmn:process>
-  <bpmn:process id="Process_0ieaey8" isExecutable="false" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_03h4opx">
       <bpmndi:BPMNShape id="Participant_0ur72bi_di" bpmnElement="Participant_0ur72bi" isHorizontal="true">
         <dc:Bounds x="129" y="310" width="2419" height="770" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0mpa3sg_di" bpmnElement="Lane_0mpa3sg" isHorizontal="true">
-        <dc:Bounds x="159" y="950" width="2389" height="130" />
+        <dc:Bounds x="159" y="900" width="2389" height="180" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1247ng8_di" bpmnElement="Lane_1247ng8" isHorizontal="true">
-        <dc:Bounds x="159" y="679" width="2389" height="271" />
+        <dc:Bounds x="159" y="679" width="2389" height="221" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0wav967_di" bpmnElement="Lane_0wav967" isHorizontal="true">
         <dc:Bounds x="159" y="310" width="2389" height="369" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1tnnofk_di" bpmnElement="Flow_1tnnofk">
-        <di:waypoint x="880" y="410" />
-        <di:waypoint x="940" y="410" />
+        <di:waypoint x="730" y="500" />
+        <di:waypoint x="940" y="500" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0wdr2x7_di" bpmnElement="Flow_0wdr2x7">
-        <di:waypoint x="1205" y="410" />
-        <di:waypoint x="2170" y="410" />
+        <di:waypoint x="1205" y="500" />
+        <di:waypoint x="2170" y="500" />
         <di:waypoint x="2170" y="1002" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1204" y="376" width="71" height="27" />
+          <dc:Bounds x="1204" y="466" width="71" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0xfwl0s_di" bpmnElement="Flow_0xfwl0s">
@@ -230,62 +233,57 @@
         <di:waypoint x="2010" y="830" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08s81jh_di" bpmnElement="Flow_08s81jh">
-        <di:waypoint x="525" y="410" />
-        <di:waypoint x="780" y="410" />
+        <di:waypoint x="525" y="500" />
+        <di:waypoint x="630" y="500" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="603" y="413" width="18" height="14" />
+          <dc:Bounds x="551" y="503" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0s7v8vw_di" bpmnElement="Flow_0s7v8vw">
-        <di:waypoint x="1180" y="435" />
-        <di:waypoint x="1180" y="530" />
+        <di:waypoint x="1180" y="525" />
+        <di:waypoint x="1180" y="570" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1094" y="446" width="71" height="27" />
+          <dc:Bounds x="1104" y="518" width="71" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_004s60p_di" bpmnElement="Flow_004s60p">
-        <di:waypoint x="500" y="435" />
-        <di:waypoint x="500" y="502" />
+        <di:waypoint x="500" y="525" />
+        <di:waypoint x="500" y="610" />
+        <di:waypoint x="602" y="610" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="482" y="434" width="15" height="14" />
+          <dc:Bounds x="502" y="613" width="15" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0v5qizy_di" bpmnElement="Flow_0v5qizy">
-        <di:waypoint x="238" y="400" />
-        <di:waypoint x="300" y="400" />
+        <di:waypoint x="238" y="490" />
+        <di:waypoint x="300" y="490" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_1qfgxiy_di" bpmnElement="Event_0tfl9aj">
-        <dc:Bounds x="202" y="382" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="178" y="428" width="85" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_10f7mqk_di" bpmnElement="Event_10f7mqk">
-        <dc:Bounds x="482" y="502" width="36" height="36" />
+        <dc:Bounds x="602" y="592" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="469" y="548" width="63" height="14" />
+          <dc:Bounds x="589" y="638" width="63" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0t5u14y_di" bpmnElement="check_mail">
-        <dc:Bounds x="300" y="370" width="100" height="80" />
+        <dc:Bounds x="300" y="460" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1wauq6i_di" bpmnElement="Gateway_1wauq6i" isMarkerVisible="true">
-        <dc:Bounds x="475" y="385" width="50" height="50" />
+        <dc:Bounds x="475" y="475" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="469" y="363" width="63" height="14" />
+          <dc:Bounds x="428" y="473" width="63" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1msnt7j_di" bpmnElement="Gateway_1msnt7j" isMarkerVisible="true">
-        <dc:Bounds x="1155" y="385" width="50" height="50" />
+        <dc:Bounds x="1155" y="475" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1097" y="366" width="66" height="27" />
+          <dc:Bounds x="1097" y="456" width="66" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0pneho4_di" bpmnElement="Activity_0lkjde1">
         <dc:Bounds x="1870" y="790" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1ge86qx_di" bpmnElement="Activity_0vgtp27">
-        <dc:Bounds x="1130" y="530" width="100" height="80" />
+        <dc:Bounds x="1130" y="570" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_073d2an_di" bpmnElement="Event_073d2an">
         <dc:Bounds x="2152" y="1002" width="36" height="36" />
@@ -297,49 +295,46 @@
         <dc:Bounds x="2010" y="790" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1tv239w_di" bpmnElement="Activity_1cs0sz2">
-        <dc:Bounds x="940" y="370" width="100" height="80" />
+        <dc:Bounds x="940" y="460" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0zjv9az_di" bpmnElement="Activity_0h87xf5">
-        <dc:Bounds x="780" y="370" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Participant_1a33wyd_di" bpmnElement="Participant_1a33wyd" isHorizontal="true">
-        <dc:Bounds x="129" y="60" width="2419" height="130" />
+        <dc:Bounds x="630" y="460" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_0v3u0lr_di" bpmnElement="MessageFlow_0v3u0lr">
-        <di:waypoint x="320" y="370" />
-        <di:waypoint x="320" y="190" />
+        <di:waypoint x="320" y="460" />
+        <di:waypoint x="320" y="120" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="227" y="209" width="85" height="53" />
+          <dc:Bounds x="227" y="180" width="85" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_09h5ps8_di" bpmnElement="MessageFlow_09h5ps8">
-        <di:waypoint x="380" y="190" />
-        <di:waypoint x="380" y="370" />
+        <di:waypoint x="380" y="120" />
+        <di:waypoint x="380" y="460" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="383" y="203" width="67" height="66" />
+          <dc:Bounds x="383" y="174" width="67" height="66" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1umy2u6_di" bpmnElement="Flow_1umy2u6">
-        <di:waypoint x="400" y="410" />
-        <di:waypoint x="475" y="410" />
+        <di:waypoint x="400" y="500" />
+        <di:waypoint x="475" y="500" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_06wlrdz_di" bpmnElement="MessageFlow_06wlrdz">
-        <di:waypoint x="960" y="370" />
-        <di:waypoint x="960" y="190" />
+        <di:waypoint x="960" y="460" />
+        <di:waypoint x="960" y="120" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="867" y="217" width="85" height="66" />
+          <dc:Bounds x="867" y="200" width="85" height="66" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_1w6sf12_di" bpmnElement="MessageFlow_1w6sf12">
-        <di:waypoint x="1000" y="190" />
-        <di:waypoint x="1000" y="370" />
+        <di:waypoint x="1000" y="120" />
+        <di:waypoint x="1000" y="460" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1008" y="231" width="64" height="53" />
+          <dc:Bounds x="1008" y="221" width="64" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10thgus_di" bpmnElement="Flow_10thgus">
-        <di:waypoint x="1040" y="410" />
-        <di:waypoint x="1155" y="410" />
+        <di:waypoint x="1040" y="500" />
+        <di:waypoint x="1155" y="500" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_0s7jzve_di" bpmnElement="Activity_0kds7t1">
         <dc:Bounds x="1140" y="700" width="100" height="80" />
@@ -350,15 +345,15 @@
         <di:waypoint x="1870" y="830" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_16kjljo_di" bpmnElement="Flow_16kjljo">
-        <di:waypoint x="1180" y="610" />
+        <di:waypoint x="1180" y="650" />
         <di:waypoint x="1180" y="700" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_16u4pca_di" bpmnElement="Flow_16u4pca">
-        <di:waypoint x="1180" y="385" />
-        <di:waypoint x="1180" y="360" />
-        <di:waypoint x="1560" y="360" />
+        <di:waypoint x="1180" y="475" />
+        <di:waypoint x="1180" y="390" />
+        <di:waypoint x="1560" y="390" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1187" y="326" width="75" height="27" />
+          <dc:Bounds x="1189" y="356" width="71" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1ed0yts_di" bpmnElement="Flow_1ed0yts">
@@ -367,24 +362,24 @@
         <di:waypoint x="2152" y="1020" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_1vpxuom_di" bpmnElement="Activity_00z9vaa">
-        <dc:Bounds x="1560" y="320" width="100" height="80" />
+        <dc:Bounds x="1560" y="350" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_19pkpmf_di" bpmnElement="MessageFlow_19pkpmf">
-        <di:waypoint x="1580" y="320" />
-        <di:waypoint x="1580" y="190" />
+        <di:waypoint x="1580" y="350" />
+        <di:waypoint x="1580" y="120" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1487" y="228" width="85" height="66" />
+          <dc:Bounds x="1487" y="212" width="85" height="66" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_1mhcoq5_di" bpmnElement="MessageFlow_1mhcoq5">
-        <di:waypoint x="1630" y="190" />
-        <di:waypoint x="1630" y="320" />
+        <di:waypoint x="1630" y="120" />
+        <di:waypoint x="1630" y="350" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1638" y="233" width="64" height="40" />
+          <dc:Bounds x="1638" y="212" width="64" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1bm74xs_di" bpmnElement="Flow_1bm74xs">
-        <di:waypoint x="1610" y="400" />
+        <di:waypoint x="1610" y="430" />
         <di:waypoint x="1610" y="700" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1u4oxs9_di" bpmnElement="Flow_1u4oxs9">
@@ -394,6 +389,34 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_1pxmyeu_di" bpmnElement="Activity_0xyn8dx">
         <dc:Bounds x="1560" y="700" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_03rg301_di" bpmnElement="Event_0tfl9aj">
+        <dc:Bounds x="202" y="472" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="178" y="518" width="85" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_14pbixk_di" bpmnElement="Flow_14pbixk">
+        <di:waypoint x="500" y="525" />
+        <di:waypoint x="500" y="610" />
+        <di:waypoint x="602" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_0l4rnqj_di" bpmnElement="Event_0l4rnqj">
+        <dc:Bounds x="602" y="342" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="585" y="385" width="70" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0yg1qrg_di" bpmnElement="Flow_0yg1qrg">
+        <di:waypoint x="500" y="475" />
+        <di:waypoint x="500" y="360" />
+        <di:waypoint x="602" y="360" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="503" y="453" width="25" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_1qfad7u_di" bpmnElement="Participant_1a33wyd" isHorizontal="true">
+        <dc:Bounds x="129" y="60" width="2419" height="60" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
