@@ -123,11 +123,12 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_179xkcf">
+        <description>Default value if no other is matching</description>
         <inputEntry id="UnaryTests_0af0ujs">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1i61ypo">
-          <text></text>
+          <text>"backoffice@solutionary.rocks"</text>
         </outputEntry>
       </rule>
     </decisionTable>
