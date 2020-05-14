@@ -86,7 +86,7 @@ subject_value = object.subject;</camunda:script>
       <bpmn:incoming>Flow_1h8x1ag</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0wa0897" name="No" sourceRef="Gateway_0dps1se" targetRef="Event_0y0351k">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">status_code_value == "204"</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">status_code_value == "202"</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1h8x1ag" sourceRef="Gateway_0dps1se" targetRef="Event_0y0351k">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="JavaScript">status_code_value == "202"</bpmn:conditionExpression>
